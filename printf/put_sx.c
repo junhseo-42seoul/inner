@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   put_sx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 18:08:42 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/05 16:37:46 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/05 17:19:30 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libftprintf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	put_sx(unsigned int n, int fd)
 {
-	long num;
-	char tmp;
+	char	*base;
+	char	tmp;
 
-	num = n;
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num *= -1;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	tmp = (num % 10) + '0';
+	base = "0123456789abcdef";
+	if (n >= 16)
+		put_sx(n / 16, fd);
+	tmp = base[n % 16];
 	write(fd, &tmp, 1);
 }

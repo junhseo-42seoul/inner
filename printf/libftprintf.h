@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 18:08:42 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/18 14:54:26 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/05 18:05:03 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	long num;
-	char tmp;
+# include <unistd.h>
+# include <stdarg.h>
+# include "libft/libft.h"
 
-	num = n;
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num *= -1;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	tmp = (num % 10) + '0';
-	write(fd, &tmp, 1);
-}
+void	put_sx(unsigned int n, int fd);
+void	put_lx(unsigned int n, int fd);
+void	put_u(unsigned int n, int fd);
+void	print_lst(const char type_spec, va_list *lst);
+int		is_type(const char *type_specifier, const char str, va_list *lst);
+
+#endif

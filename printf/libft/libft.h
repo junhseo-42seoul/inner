@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 18:08:42 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/18 14:54:26 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/05 17:58:34 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	long num;
-	char tmp;
+# include <unistd.h>
 
-	num = n;
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num *= -1;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	tmp = (num % 10) + '0';
-	write(fd, &tmp, 1);
-}
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
+#endif

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   is_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 18:08:42 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/05 18:04:20 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/05 18:04:45 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libftprintf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int is_type(const char *type_specifier, const char str, va_list *lst)
 {
-	long num;
-	char tmp;
-
-	num = n;
-	if (num < 0)
-	{
-		write(fd, "-", 1);
-		num *= -1;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	tmp = (num % 10) + '0';
-	write(fd, &tmp, 1);
+	if (!ft_strchr(type_specifier, str))
+		return (0);
+	print_lst(str, lst);
+	return (1);
 }
