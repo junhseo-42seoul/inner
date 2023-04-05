@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 17:20:25 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/05 23:05:46 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

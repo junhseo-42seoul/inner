@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:46:10 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 18:05:22 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/05 22:59:42 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "include/libftprintf.h"
 
 int	ft_printf(const char *str, ...)
 {
@@ -33,12 +33,4 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(lst);
 	return (0);
-}
-
-#include <stdio.h>
-int main()
-{
-	ft_printf("a: %X\nb: %X\na+b: %X%%\n", 10, 20, 214748364);
-	printf("a: %X\nb: %X\na+b: %X%%\n", 10, 20, 214748364);
-	return 0;
 }

@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:25:31 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 17:15:41 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/05 23:05:39 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
