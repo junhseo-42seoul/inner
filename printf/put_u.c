@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:37:40 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 23:00:02 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:12:24 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libftprintf.h"
+#include "include/ft_printf.h"
 
 void	put_u(unsigned int n, int fd)
 {

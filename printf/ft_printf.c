@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:46:10 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 22:59:42 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 13:14:43 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libftprintf.h"
+#include "include/ft_printf.h"
 
 int	ft_printf(const char *str, ...)
 {

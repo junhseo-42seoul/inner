@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:24:11 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 22:59:52 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:12:34 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libftprintf.h"
+#include "include/ft_printf.h"
 
 void	print_lst(const char type_spec, va_list *lst)
 {
