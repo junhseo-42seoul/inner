@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:37:46 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 15:38:48 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:25:29 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	put_sx(unsigned int n, int *count)
 		put_sx(n / 16, count);
 	tmp = base[n % 16];
 	write(1, &tmp, 1);
-	*count = *count + 1;
+	*count += 1;
 }

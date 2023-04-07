@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 15:39:20 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:25:41 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	put_nbr(int n, int *count)
 		put_nbr(num / 10, count);
 	tmp = (num % 10) + '0';
 	write(1, &tmp, 1);
-	*count = *count + 1;
+	*count += 1;
 }

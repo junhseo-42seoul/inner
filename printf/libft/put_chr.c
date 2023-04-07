@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:25:31 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 15:40:43 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:25:44 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	put_chr(char c, int *count)
 {
 	write(1, &c, 1);
-	*count = *count + 1;
+	*count += 1;
 }
