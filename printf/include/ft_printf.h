@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:54:26 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 16:05:44 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 18:53:54 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	put_sx(unsigned int n, int *count);
 void	put_lx(unsigned int n, int *count);
 void	put_u(unsigned int n, int *count);
 void	put_per(int *count);
+void	put_mem(unsigned int ptr, int *count);
 void	print_lst(const char type_spec, va_list *lst, int *count);
 
 #endif
