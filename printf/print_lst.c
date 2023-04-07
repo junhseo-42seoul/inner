@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:24:11 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 18:06:51 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 18:35:44 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	print_lst(const char type_spec, va_list *lst, int *count)
 		put_str(va_arg(*lst, char *), count);
 	else if (type_spec == 'p')
 	{
-		write(1, "0x10", 4);
-		*count += 4;
+		write(1, "0x", 2);
+		*count += 2;
 		put_sx(va_arg(*lst, unsigned int), count);
 	}
 	else if (type_spec == 'd' || type_spec == 'i')
