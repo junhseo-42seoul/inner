@@ -6,16 +6,16 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:53:57 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 23:06:01 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:22:21 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s != (char)c)
 		if (!*s++)
-			return (0);
+			return (NULL);
 	return ((char *)s);
 }

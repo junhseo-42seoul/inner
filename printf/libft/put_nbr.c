@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   put_nbr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:25:31 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 23:05:39 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/07 15:39:20 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	put_nbr(int n, int *count)
 {
-	write(fd, &c, 1);
+	long	num;
+	char	tmp;
+
+	num = n;
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		num *= -1;
+	}
+	if (num >= 10)
+		put_nbr(num / 10, count);
+	tmp = (num % 10) + '0';
+	write(1, &tmp, 1);
+	*count = *count + 1;
 }

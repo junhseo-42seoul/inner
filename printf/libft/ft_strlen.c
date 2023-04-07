@@ -6,15 +6,15 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:57 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 23:06:05 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:22:29 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
 	while (s[count] != '\0')

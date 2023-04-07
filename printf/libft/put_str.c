@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   put_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:27:39 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 23:05:57 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:45:19 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	put_str(char *s, int *count)
 {
-	write(fd, s, ft_strlen(s));
+	int	strlen;
+
+	strlen = ft_strlen(s);
+	write(1, s, strlen);
+	*count += strlen;
 }

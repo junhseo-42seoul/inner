@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:54:26 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/05 17:58:34 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:18:33 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <unistd.h>
 
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	put_chr(char c, int *count);
+void	put_str(char *s, int *count);
+void	put_nbr(int n, int *count);
 
 #endif
