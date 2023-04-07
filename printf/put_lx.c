@@ -6,13 +6,13 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:37:44 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 19:02:28 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 19:04:34 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-void	put_lx(unsigned long n, int *count)
+void	put_lx(unsigned int n, int *count)
 {
 	char	*base;
 	char	tmp;
