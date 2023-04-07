@@ -6,13 +6,13 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:38:49 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 19:00:38 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/07 19:03:02 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-void	put_mem(unsigned int ptr, int *count)
+void	put_mem(unsigned long ptr, int *count)
 {
 	int	depth;
 
