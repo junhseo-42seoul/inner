@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 13:27:31 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 19:08:10 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,4 @@ void	put_nbr(long n, int *count)
 		return ;
 	tmp = (n % 10) + '0';
 	error_check(write(1, &tmp, 1), count);
-	if (*count == -1)
-		return ;
 }
