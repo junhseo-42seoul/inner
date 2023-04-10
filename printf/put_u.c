@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:37:40 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 16:25:21 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 13:29:17 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	put_u(unsigned int n, int *count)
 
 	if (n >= 10)
 		put_u(n / 10, count);
+	if (*count == -1)
+		return ;
 	tmp = (n % 10) + '0';
-	write(1, &tmp, 1);
-	*count += 1;
+	error_check(write(1, &tmp, 1), count);
+	if (*count == -1)
+		return ;
 }

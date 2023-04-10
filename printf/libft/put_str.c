@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:27:39 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 16:24:53 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 11:14:44 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	put_str(char *s, int *count)
 
 	if (s == NULL)
 	{
-		write(1, "(null)", 6);
-		*count += 6;
+		error_check(write(1, "(null)", 6), count);
 		return ;
 	}
 	strlen = ft_strlen(s);
-	write(1, s, strlen);
-	*count += strlen;
+	error_check(write(1, s, strlen), count);
+	if (*count == -1)
+		return ;
 }

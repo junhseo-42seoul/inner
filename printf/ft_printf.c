@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:46:10 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 15:31:35 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 11:10:27 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ int	ft_printf(const char *str, ...)
 			print_lst(*str, &lst, &count);
 		}
 		else
-		{	
-			write(1, str, 1);
-			count++;
-		}
+			put_chr(*str, &count);
 		str++;
+		if (count == -1)
+			return (-1);
 	}
 	va_end(lst);
 	return (count);

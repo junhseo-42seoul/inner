@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_per.c                                          :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/07 16:04:06 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 11:15:21 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/10 10:52:26 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/10 11:17:52 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-void	put_per(int *count)
+void	error_check(int check, int *count)
 {
-	error_check(write(1, "%", 1), count);
-	if (*count == -1)
+	if (check == -1)
+	{
+		*count = -1;
 		return ;
+	}
+	*count += check;
 }
