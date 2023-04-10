@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:24:11 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 09:55:03 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 10:00:50 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	print_lst(const char type_spec, va_list *lst, int *count)
 	else if (type_spec == 'u')
 		put_u(va_arg(*lst, unsigned int), count);
 	else if (type_spec == 'x')
-		put_sx(va_arg(*lst, unsigned long long), count);
+		put_sx(va_arg(*lst, unsigned int), count);
 	else if (type_spec == 'X')
-		put_lx(va_arg(*lst, unsigned long long), count);
+		put_lx(va_arg(*lst, unsigned int), count);
 	else if (type_spec == '%')
 		put_per(count);
 }
