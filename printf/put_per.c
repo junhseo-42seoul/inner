@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:04:06 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 11:15:21 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/10 14:53:43 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,4 @@
 void	put_per(int *count)
 {
 	error_check(write(1, "%", 1), count);
-	if (*count == -1)
-		return ;
 }
