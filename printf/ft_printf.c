@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:46:10 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/12 10:50:01 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/12 13:27:51 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@ int	ft_printf(const char *str, ...)
 {
 	va_list		lst;
 	int			count;
-	const char	*type_specifier;
+	const char	*type;
 
-	type_specifier = "cspdiuxX%";
+	type = "cspdiuxX%";
 	va_start(lst, str);
 	count = 0;
 	while (*str)
 	{
-		if (*str == '%')
-		{
-			if (!is_type(type_specifier, *(++str)))
-				return (-1);
+		if (*str == '%' && ft_strchr(type, *(++str)))
 			print_lst(*str, &lst, &count);
-		}
 		else
 			put_chr(*str, &count);
 		str++;
