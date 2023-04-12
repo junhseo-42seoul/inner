@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_lx.c                                           :+:      :+:    :+:   */
+/*   put_nbr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 16:37:44 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 19:07:57 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/27 16:38:37 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/12 10:52:35 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "ft_printf.h"
 
-void	put_lx(unsigned long long n, int *count)
+void	put_nbr(long n, int *count)
 {
-	char	*base;
 	char	tmp;
 
-	base = "0123456789ABCDEF";
-	if (n >= 16)
-		put_lx(n / 16, count);
+	if (n < 0)
+	{
+		error_check(write(1, "-", 1), count);
+		if (*count == -1)
+			return ;
+		n *= -1;
+	}
+	if (n >= 10)
+		put_nbr(n / 10, count);
 	if (*count == -1)
 		return ;
-	tmp = base[n % 16];
+	tmp = (n % 10) + '0';
 	error_check(write(1, &tmp, 1), count);
 }

@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 10:52:26 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 11:17:52 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:50:01 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "ft_printf.h"
 
 void	error_check(int check, int *count)
 {

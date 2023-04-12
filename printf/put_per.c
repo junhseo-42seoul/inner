@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:04:06 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 14:53:43 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:50:01 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "ft_printf.h"
 
 void	put_per(int *count)
 {

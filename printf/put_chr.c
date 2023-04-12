@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_sx.c                                           :+:      :+:    :+:   */
+/*   put_chr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 16:37:46 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 19:07:44 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/27 16:25:31 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/12 10:52:35 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "ft_printf.h"
 
-void	put_sx(unsigned long long n, int *count)
+void	put_chr(char c, int *count)
 {
-	char	*base;
-	char	tmp;
-
-	base = "0123456789abcdef";
-	if (n >= 16)
-		put_sx(n / 16, count);
-	if (*count == -1)
-		return ;
-	tmp = base[n % 16];
-	error_check(write(1, &tmp, 1), count);
+	error_check(write(1, &c, 1), count);
 }

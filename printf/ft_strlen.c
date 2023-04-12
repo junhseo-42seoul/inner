@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_chr.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:25:31 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 19:08:26 by junhseo          ###   ########.fr       */
+/*   Created: 2023/03/13 14:53:57 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/12 10:52:35 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
-void	put_chr(char c, int *count)
+int	ft_strlen(const char *s)
 {
-	error_check(write(1, &c, 1), count);
+	int	count;
+
+	count = 0;
+	while (s[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_str.c                                          :+:      :+:    :+:   */
+/*   put_x.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:27:39 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/10 19:08:20 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/05 16:37:44 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/12 11:07:40 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
-void	put_str(char *s, int *count)
+void	put_x(unsigned long long n, int *count, char *base)
 {
-	int	strlen;
+	char	tmp;
 
-	if (s == NULL)
-	{
-		error_check(write(1, "(null)", 6), count);
+	if (n >= 16)
+		put_x(n / 16, count, base);
+	if (*count == -1)
 		return ;
-	}
-	strlen = ft_strlen(s);
-	error_check(write(1, s, strlen), count);
+	tmp = base[n % 16];
+	error_check(write(1, &tmp, 1), count);
 }

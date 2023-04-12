@@ -6,11 +6,11 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:53:57 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/07 16:25:49 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:52:35 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 char	*ft_strchr(const char *s, int c)
 {
