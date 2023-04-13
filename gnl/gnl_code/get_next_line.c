@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:13:12 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/13 20:11:21 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/13 20:17:49 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,7 @@ char	*get_next_line(int fd)
 	index = 0;
 	while (*(buff + index) != '\n' && index < BUFFER_SIZE && *(buff + index) != '\0')
 		index++;
-	if (*(buff + index) == '\n')
-	{
-		new = (char *)malloc(index + 2);
-		if (new == NULL)
-			return (NULL);
-		new[index + 1] = '\0';
-		int i = 0;
-		while (i <= index)
-		{
-			*(new + i) = *buff++;
-			i++;
-		}
-	}
-	else
+	if (*(buff + index) == '\0')
 	{
 		new = (char *)malloc(index + 1);
 		if (new == NULL)
@@ -61,6 +48,19 @@ char	*get_next_line(int fd)
 		new[index] = '\0';
 		int i = 0;
 		while (i < index)
+		{
+			*(new + i) = *buff++;
+			i++;
+		}
+	}
+	else
+	{
+		new = (char *)malloc(index + 2);
+		if (new == NULL)
+			return (NULL);
+		new[index + 1] = '\0';
+		int i = 0;
+		while (i <= index)
 		{
 			*(new + i) = *buff++;
 			i++;
