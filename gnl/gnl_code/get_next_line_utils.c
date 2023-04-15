@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:13:15 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/15 14:02:15 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/15 16:39:54 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,15 @@ char	*decision_rv(int fd, char **bbuff, int index)
 	char	*buff;
 	char	*tmp;
 
-	if (*(*bbuff + index) == '\n')
-		return (get_str(index, bbuff));
 	buff = NULL;
-	create_buff(fd, &buff);
-	if (!buff)
+	if (!create_buff(fd, &buff))
 	{
+		free(*bbuff);
+		return (NULL);
+	}
+	if (*buff == '\0' && **bbuff == '\0')
+	{
+		free(buff);
 		free(*bbuff);
 		return (NULL);
 	}
