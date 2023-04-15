@@ -1,1 +1,0 @@
-Once we have the file open, we read its contents
