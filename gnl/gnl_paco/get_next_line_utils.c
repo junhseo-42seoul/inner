@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 15:13:15 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/15 16:39:54 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/16 19:10:56 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/16 22:37:50 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ char	*create_buff(int fd, char **buff)
 	if (*buff)
 		return (*buff);
 	*buff = (char *)malloc(BUFFER_SIZE + 1);
-	if (*buff == NULL)
+	if (!*buff)
+	{
+		*buff = NULL;
 		return (NULL);
+	}
 	rv = read(fd, *buff, BUFFER_SIZE);
 	if (rv < 0)
 	{
 		free(*buff);
+		*buff = NULL;
 		return (NULL);
 	}
 	else if (rv == 0)
-	{
-		free(*buff);
-		*buff = (char *)malloc(1);
 		**buff = '\0';
-		return (*buff);
-	}
-	*(*buff + BUFFER_SIZE) = '\0';
+	else
+		*(*buff + rv) = '\0';
 	return (*buff);
 }
 
@@ -52,7 +52,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (*str++)
 		total_len++;
 	new = (char *)malloc(total_len + 1);
-	if (new == NULL)
+	if (!new)
 		return (NULL);
 	str = new;
 	while (*s1)
@@ -63,31 +63,35 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new);
 }
 
-char	*get_str(int index, char **bbuff)
+char	*get_string_before_newline(int index, char **save)
 {
 	char	*new;
-	char	*buff;
+	char	*tmp;
 	int		input_index;
 
-	new = (char *)malloc(index + 2);
+	new = (char *)malloc(index + 1);
 	if (!new)
 	{
-		free(new);
-		free(*bbuff);
+		free(*save);
+		*save = NULL;
 		return (NULL);
 	}
-	*(new + index) = '\n';
-	*(new + index + 1) = '\0';
+	*(new + index) = '\0';
 	input_index = -1;
 	while (++input_index < index)
-		*(new + input_index) = *(*bbuff + input_index);
-	buff = ft_strjoin("", (*bbuff + index + 1));
-	free(*bbuff);
-	*bbuff = buff;
+		*(new + input_index) = *(*save + input_index);
+	tmp = ft_strjoin("", (*save + index));
+	free(*save);
+	if (!tmp)
+	{
+		*save = NULL;
+		return (NULL);
+	}
+	*save = tmp;
 	return (new);
 }
 
-char	*get_last(int index, char **bbuff)
+char	*get_last_line(int index, char **save)
 {
 	char	*new;
 	int		input_index;
@@ -96,43 +100,43 @@ char	*get_last(int index, char **bbuff)
 	if (!new)
 	{
 		free(new);
-		free(*bbuff);
+		free(*save);
+		*save = NULL;
 		return (NULL);
 	}
 	*(new + index) = '\0';
 	input_index = -1;
 	while (++input_index < index)
-		*(new + input_index) = *(*bbuff + input_index);
-	free(*bbuff);
-	*bbuff = NULL;
+		*(new + input_index) = *(*save + input_index);
+	free(*save);
+	*save = NULL;
 	return (new);
 }
 
-char	*decision_rv(int fd, char **bbuff, int index)
+char	*update_buffers(int fd, char **save, char **buff, int index)
 {
-	char	*buff;
 	char	*tmp;
 
-	buff = NULL;
-	if (!create_buff(fd, &buff))
+	if (**save == '\0' && **buff == '\0')
 	{
-		free(*bbuff);
+		free(*save);
+		free(*buff);
+		*save = NULL;
 		return (NULL);
 	}
-	if (*buff == '\0' && **bbuff == '\0')
+	if (**buff == '\0')
 	{
-		free(buff);
-		free(*bbuff);
+		free(*buff);
+		return (get_last_line(index, save));
+	}
+	tmp = ft_strjoin(*save, *buff);
+	free(*save);
+	free(*buff);
+	if (!tmp)
+	{
+		*save = NULL;
 		return (NULL);
 	}
-	if (*buff == '\0')
-	{
-		free(buff);
-		return (get_last(index, bbuff));
-	}
-	tmp = ft_strjoin(*bbuff, buff);
-	free(buff);
-	free(*bbuff);
-	*bbuff = tmp;
+	*save = tmp;
 	return (get_next_line(fd));
 }

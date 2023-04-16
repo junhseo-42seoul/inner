@@ -6,6 +6,7 @@
 		"locale": "c",
 		"unistd.h": "c",
 		"stdlib.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"get_next_line.h": "c"
 	}
 }

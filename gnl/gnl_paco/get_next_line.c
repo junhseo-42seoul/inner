@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 09:52:33 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/15 16:39:03 by junhseo          ###   ########.fr       */
+/*   Created: 2023/04/16 19:13:05 by junhseo           #+#    #+#             */
+/*   Updated: 2023/04/16 21:31:29 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*bbuff;
+	static char	*save;
+	char		*buff;
 	int			index;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!create_buff(fd, &bbuff))
+	if (!create_buff(fd, &save))
 		return (NULL);
 	index = 0;
-	while (*(bbuff + index) != '\n' && *(bbuff + index) != '\0')
+	while (*(save + index) != '\n' && *(save + index) != '\0')
 		index++;
-	if (*(bbuff + index) == '\n')
-		return (get_str(index, &bbuff));
-	return (decision_rv(fd, &bbuff, index));
+	if (*(save + index) == '\n')
+		return (get_string_before_newline(++index, &save));
+	buff = NULL;
+	if (!create_buff(fd, &buff))
+	{
+		free(save);
+		save = NULL;
+		return (NULL);
+	}
+	return (update_buffers(fd, &save, &buff, index));
 }
