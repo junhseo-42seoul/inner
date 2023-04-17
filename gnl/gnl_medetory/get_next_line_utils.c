@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:10:56 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/17 11:16:13 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:11:20 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,6 @@ char	*get_string_before_newline(int index, char **save)
 		*(new + input_index) = *(*save + input_index);
 	tmp = ft_strjoin("", (*save + index), 0);
 	free(*save);
-	if (!tmp)
-	{
-		*save = NULL;
-		return (NULL);
-	}
 	*save = tmp;
 	return (new);
 }
