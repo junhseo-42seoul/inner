@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:10:56 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/16 23:05:47 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/17 11:16:13 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,11 @@ char	*create_buff(int fd, char **buff)
 	return (*buff);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2, size_t total_len)
 {
-	size_t	total_len;
 	char	*str;
 	char	*new;
 
-	total_len = 0;
 	str = s1;
 	while (*str++)
 		total_len++;
@@ -53,7 +51,13 @@ char	*ft_strjoin(char *s1, char *s2)
 		total_len++;
 	new = (char *)malloc(total_len + 1);
 	if (!new)
-		return (NULL);
+	{
+		new = (char *)malloc(1);
+		if (!new)
+			return (NULL);
+		*new = '\0';
+		return (new);
+	}
 	str = new;
 	while (*s1)
 		*str++ = *s1++;
@@ -80,7 +84,7 @@ char	*get_string_before_newline(int index, char **save)
 	input_index = -1;
 	while (++input_index < index)
 		*(new + input_index) = *(*save + input_index);
-	tmp = ft_strjoin("", (*save + index));
+	tmp = ft_strjoin("", (*save + index), 0);
 	free(*save);
 	if (!tmp)
 	{
@@ -129,7 +133,7 @@ char	*update_buffers(int fd, char **save, char **buff, int index)
 		free(*buff);
 		return (get_last_line(index, save));
 	}
-	tmp = ft_strjoin(*save, *buff);
+	tmp = ft_strjoin(*save, *buff, 0);
 	free(*save);
 	free(*buff);
 	if (!tmp)

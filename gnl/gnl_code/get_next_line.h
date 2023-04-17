@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 12:10:01 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/16 21:28:48 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/17 11:17:29 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1024
 # endif
 
 # include <stdlib.h>
@@ -22,7 +22,7 @@
 
 char	*get_next_line(int fd);
 char	*create_buff(int fd, char **buff);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2, size_t total_len);
 char	*get_string_before_newline(int index, char **save);
 char	*get_last_line(int index, char **save);
 char	*update_buffers(int fd, char **save, char **buff, int index);
