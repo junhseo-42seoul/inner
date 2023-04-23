@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:13:05 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/23 18:42:44 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/23 20:18:18 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ char	*get_string(int index, char *buff)
 
 	new = (char *)malloc(index + 1);
 	if (!new)
-		return (NULL);
+	{
+		new = (char *)malloc(1);
+		if (!new)
+			return (NULL);
+		*new = '\0';
+		return (new);
+	}
 	*(new + index) = '\0';
 	input_index = -1;
 	while (++input_index < index)
@@ -65,6 +71,7 @@ t_list	*create_node(int fd)
 	return (new_node);
 }
 
+#include <string.h>
 char	*ft_strjoin(char *s1, char *s2, size_t total_len)
 {
 	char	*str;
@@ -78,7 +85,13 @@ char	*ft_strjoin(char *s1, char *s2, size_t total_len)
 		total_len++;
 	new = (char *)malloc(total_len + 1);
 	if (!new)
-		return (NULL);
+	{
+		new = malloc(1);
+		if (!new)
+			return (NULL);
+		*new = '\0';
+		return (new);
+	}
 	str = new;
 	while (*s1)
 		*str++ = *s1++;
