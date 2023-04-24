@@ -6,22 +6,80 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:10:56 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/23 18:36:31 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/24 13:28:48 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-//삭제할 노드를 fd + find_fd로 탐색할 것인지, 구조체 포인터를 인자로 받아 바로 해제할 것인지 고민 필요
-//연결리스트 삭제 부분에서 해당 함수를 가져다 쓴다고 가정하면 구조체 포인터를 인자로 받는것이 좋아보임
-void	free_node(t_list **node)
+char	*ft_strjoin(char *s1, char *s2, size_t total_len)
 {
-	free((*node)->buff);
-	free((*node));
+	char	*str;
+	char	*new;
+
+	str = s1;
+	while (*str++)
+		total_len++;
+	str = s2;
+	while (*str++)
+		total_len++;
+	new = (char *)malloc(total_len + 1);
+	if (!new)
+	{
+		new = malloc(1);
+		if (!new)
+			return (NULL);
+		*new = '\0';
+		return (new);
+	}
+	str = new;
+	while (*s1)
+		*str++ = *s1++;
+	while (*s2)
+		*str++ = *s2++;
+	*str = '\0';
+	return (new);
 }
 
-//리스트 맨뒤에 새로운 노드 연결
-//first_node가 NULL인 경우는 고려하지 않아도 됨
+char	*read_file(int fd)
+{
+	char	*new;
+	int		rv;
+
+	new = (char *)malloc(BUFFER_SIZE + 1);
+	if (!new)
+		return (NULL);
+	rv = read(fd, new, BUFFER_SIZE);
+	if (rv < 0)
+	{
+		free(new);
+		return (NULL);
+	}
+	else if (rv == 0)
+		*new = '\0';
+	else
+		*(new + rv) = '\0';
+	return (new);
+}
+
+t_list	*find_node(int fd, t_head **head)
+{
+	t_list	*list;
+	t_list	*append_result;
+
+	list = (*head)->first_node;
+	while (list)
+	{
+		if (list->fd == fd)
+			return (list);
+		list = list->next;
+	}
+	append_result = append_node(fd, head);
+	if (append_result)
+		return (append_result);
+	return (NULL);
+}
+
 t_list	*append_node(int fd, t_head **head)
 {
 	t_list	*lst;
@@ -37,7 +95,6 @@ t_list	*append_node(int fd, t_head **head)
 	return (new);
 }
 
-//노드 삭제(first_node, middle-end_node 모두 처리 가능)
 void	delete_node(int fd, t_head **head)
 {
 	t_list	*tmp;
@@ -47,7 +104,8 @@ void	delete_node(int fd, t_head **head)
 	{
 		tmp = (*head)->first_node;
 		(*head)->first_node = tmp->next;
-		free_node(&tmp);
+		free(tmp->buff);
+		free(tmp);
 	}
 	else
 	{
@@ -56,87 +114,12 @@ void	delete_node(int fd, t_head **head)
 			tmp = tmp->next;
 		del_node = tmp->next;
 		tmp->next = del_node->next;
-		free_node(&del_node);
+		free(del_node->buff);
+		free(del_node);
 	}
 	if (!(*head)->first_node)
 	{
 		free(*head);
 		*head = NULL;
 	}
-}
-
-//해당 부분 수정 후 동작여부 테스트 진행
-char	*update_buffers(int fd, int index, t_head **head)
-{
-	t_list	*node;
-	char	*buff;
-	char	*tmp;
-
-	node = find_node(fd, *head);
-	buff = read_file(fd);
-	if (!buff)
-	{
-		delete_node(fd, head);
-		return (NULL);
-	}
-	if (*(node->buff + node->index) == '\0' && *buff == '\0')
-	{
-		free(buff);
-		delete_node(fd, head);
-		return (NULL);
-	}
-	if (*buff == '\0')
-	{
-		free(buff);
-		tmp = get_string(index, (node->buff + node->index));
-		delete_node(fd, head);
-		return (tmp);
-	}
-	tmp = ft_strjoin((node->buff + node->index), buff, 0);
-	free(node->buff);
-	free(buff);
-	node->buff = tmp;
-	node->index = 0;
-	return (get_next_line(fd));
-}
-
-char	*get_next_line(int fd)
-{
-	static t_head	*head = {NULL};
-	char			*result;
-	t_list			*tmp;
-	int				index;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!head)
-	{
-		head = (t_head *)malloc(sizeof(t_head));
-		if (!head)
-			return (NULL);
-		head->first_node = create_node(fd);
-		if (!head->first_node)
-		{
-			free(head);
-			head = NULL;
-			return (NULL);
-		}
-	}
-	tmp = find_node(fd, head);
-	if (!tmp)
-	{
-		tmp = append_node(fd, &head);
-		if (!tmp)
-			return (NULL);
-	}
-	index = 0;
-	while (*(tmp->buff + tmp->index + index) != '\n' && *(tmp->buff + tmp->index + index) != '\0')
-		index++;
-	if (*(tmp->buff + tmp->index + index) == '\n')
-	{
-		result = get_string(++index, (tmp->buff + tmp->index));
-		tmp->index += index;
-		return (result);
-	}	
-	return (update_buffers(fd, index, &head));
 }
