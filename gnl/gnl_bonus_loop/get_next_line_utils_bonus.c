@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:10:56 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/24 13:28:48 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:50:01 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin(char *s1, char *s2, size_t total_len)
 	new = (char *)malloc(total_len + 1);
 	if (!new)
 	{
-		new = malloc(1);
+		new = (char *)malloc(1);
 		if (!new)
 			return (NULL);
 		*new = '\0';
@@ -65,34 +65,45 @@ char	*read_file(int fd)
 t_list	*find_node(int fd, t_head **head)
 {
 	t_list	*list;
-	t_list	*append_result;
+	t_list	*tail;
+	t_list	*new;
 
 	list = (*head)->first_node;
 	while (list)
 	{
 		if (list->fd == fd)
 			return (list);
+		tail = list;
 		list = list->next;
 	}
-	append_result = append_node(fd, head);
-	if (append_result)
-		return (append_result);
-	return (NULL);
-}
-
-t_list	*append_node(int fd, t_head **head)
-{
-	t_list	*lst;
-	t_list	*new;
-
-	lst = (*head)->first_node;
-	while (lst->next)
-		lst = lst->next;
 	new = create_node(fd);
 	if (!new)
 		return (NULL);
-	lst->next = new;
+	tail->next = new;
 	return (new);
+}
+
+char	*find_next_line(t_list **node, char **buff, int *index)
+{
+	char	*result;
+	char	*tmp;
+
+	tmp = ft_strjoin(((*node)->buff + (*node)->index), *buff, 0);
+	free((*node)->buff);
+	free(*buff);
+	(*node)->buff = tmp;
+	(*node)->index = 0;
+	*index = 0;
+	while (*((*node)->buff + *index) != '\n' \
+			&& *((*node)->buff + *index) != '\0')
+		(*index)++;
+	if (*((*node)->buff + *index) == '\n')
+	{
+		result = get_string(++(*index), ((*node)->buff));
+		(*node)->index += *index;
+		return (result);
+	}
+	return (NULL);
 }
 
 void	delete_node(int fd, t_head **head)

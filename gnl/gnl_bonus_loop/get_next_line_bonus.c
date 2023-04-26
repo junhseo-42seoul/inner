@@ -6,7 +6,7 @@
 /*   By: junhseo <junhseo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:13:05 by junhseo           #+#    #+#             */
-/*   Updated: 2023/04/24 13:28:58 by junhseo          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:51:56 by junhseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,57 +69,57 @@ char	*get_string(int index, char *buff)
 	return (new);
 }
 
-char	*update_buffers(int fd, int index, t_head **head, char *tmp)
+char	*update_buffers(int fd, int index, t_head **head, t_list **node)
 {
-	t_list	*node;
+	char	*result;
 	char	*buff;
 
-	node = find_node(fd, head);
-	buff = read_file(fd);
-	if (!buff)
+	result = NULL;
+	while (1)
 	{
-		delete_node(fd, head);
-		return (NULL);
+		buff = read_file(fd);
+		if (!buff)
+		{
+			delete_node(fd, head);
+			return (NULL);
+		}
+		if (*buff == '\0')
+		{
+			free(buff);
+			if (*((*node)->buff + (*node)->index) != '\0')
+				result = get_string(index, ((*node)->buff + (*node)->index));
+			delete_node(fd, head);
+			return (result);
+		}
+		result = find_next_line(node, &buff, &index);
+		if (result)
+			return (result);
 	}
-	if (*buff == '\0')
-	{
-		free(buff);
-		if (*(node->buff + node->index) != '\0')
-			tmp = get_string(index, (node->buff + node->index));
-		delete_node(fd, head);
-		return (tmp);
-	}
-	tmp = ft_strjoin((node->buff + node->index), buff, 0);
-	free(node->buff);
-	free(buff);
-	node->buff = tmp;
-	node->index = 0;
-	return (get_next_line(fd));
 }
 
 char	*get_next_line(int fd)
 {
 	static t_head	*head = {NULL};
 	char			*result;
-	t_list			*tmp;
+	t_list			*node;
 	int				index;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!create_head(fd, &head))
 		return (NULL);
-	tmp = find_node(fd, &head);
-	if (!tmp)
+	node = find_node(fd, &head);
+	if (!node)
 		return (NULL);
 	index = 0;
-	while (*(tmp->buff + tmp->index + index) != '\n'\
-			&& *(tmp->buff + tmp->index + index) != '\0')
+	while (*(node->buff + node->index + index) != '\n' \
+			&& *(node->buff + node->index + index) != '\0')
 		index++;
-	if (*(tmp->buff + tmp->index + index) == '\n')
+	if (*(node->buff + node->index + index) == '\n')
 	{
-		result = get_string(++index, (tmp->buff + tmp->index));
-		tmp->index += index;
+		result = get_string(++index, (node->buff + node->index));
+		node->index += index;
 		return (result);
-	}	
-	return (update_buffers(fd, index, &head, NULL));
+	}
+	return (update_buffers(fd, index, &head, &node));
 }
